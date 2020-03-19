@@ -1,11 +1,10 @@
-﻿{% extends "base.html.twig" %}
+{% extends "base.html.twig" %}
 
 {% block content %}
 
 
     <div class="row">
         <div class="col-md-8">
-
 
             <div class="content-background" style="background-image: url('https://picsum.photos/860/300'); height: 300px;">
             	<div class="content">
@@ -15,18 +14,18 @@
         </div><!-- /.col -->
 
         <div class="col-md-4">
-            <div class="content-background background--donkerblauw">
+            <div class="content-background background--donkerblauw" style="height: 300px;">
                 <div class="content">
                     <h2>Bijeenkomsten</h2>
                     <ul class="list list--links list--chevrons">
                         <li>
-                            <a href="#"><b>12-3-2020 Amsterdam</b><br />De staat van de stad</a>
+                            <a href="{{ path('app_event_view', { 'id': 1 }) }}"><b>12-3-2020 Amsterdam</b><br />De staat van de stad</a>
                         </li>
                         <li>
-                            <a href="#"><b>12-3-2020 Den Haag</b><br />De staat van de stad</a>
+                            <a href="{{ path('app_event_view', { 'id': 2 }) }}"><b>12-3-2020 Den Haag</b><br />De staat van de stad</a>
                         </li>
                         <li>
-                            <a href="#"><b>12-3-2020 Utrecht</b><br />De staat van de stad</a>
+                            <a href="{{ path('app_event_view', { 'id': 3 }) }}"><b>12-3-2020 Utrecht</b><br />De staat van de stad</a>
                         </li>
                     </ul>
 
@@ -56,23 +55,30 @@
             <h2> Uitgelicht</h2>
             <ul class="list list--card">
                 <li class="card">
-                    <a href="#" class="card__content">
-                        <div class="card__thumb" style="background-image: url('https://picsum.photos/200)"></div>
+                    <a href="{{ path('app_challenge_index') }}" class="card__content">
+                        <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
                         <div class="card__body">
-                            <span class="card__title">Vooraan﻿&#8203;kondiging nieuwe werkwijze relatief verzuim</span>
+                            <span class="card__title">Challenges</span>
+                            Bekijk challanges en beloningen vanuit de overheid
                         </div>
                     </a>
                 </li>
                 <li class="card">
-                    <a href="#" class="card__content">
+                    <a href="{{ path('app_pitch_index') }}" class="card__content">
                         <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
-                        <div class="card__body"><span class="card__title">Verzuimloket niet uitgefaseerd</span></div>
+                        <div class="card__body">
+                        	<span class="card__title">Pitches</span>
+                        	Bekijk goede ideën vanuit de communitys
+                        </div>
                     </a>
                 </li>
                 <li class="card">
-                    <a href="#" class="card__content">
+                    <a href="{{ path('app_news_index') }}" class="card__content">
                         <div class="card__thumb" style="background-image: url('https://picsum.photos/200')"></div>
-                        <div class="card__body"><span class="card__title">Opschonen vrijstellingen&#8203;register</span></div>
+                        <div class="card__body">
+                        	<span class="card__title">Nieuws</span>
+                        	Volg het laatste nieuws
+                        </div>
                     </a>
                 </li>
             </ul>

@@ -7,14 +7,19 @@
                             <i class="icon icon-home" role="presentation"></i>
                             <span>Home</span>
                         </a>
-                    </li>
-
+                    </li>                    
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <li class="nav__item"><a class="nav__link " href="{{ path('app_assent_index') }}">Instemmingen</a></li>
+                    {% endif %}
+					
+					{#
                     <li class="nav__item">
-                        <a href="{{ path('app_user_index') }}" title="Home" class="nav__link  ">
+                        <a href="{{ path('app_user_login') }}" title="Home" class="nav__link  ">
                             <i class="icon icon-user" role="presentation"></i>
                             <span>Inloggen</span>
                         </a>
                     </li>
+                    #}
 
                 </ul>
             </div>
