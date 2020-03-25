@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 use App\Service\CommonGroundService;
-use App\Service\RequestService;
 
 class ApplicationService
 {
@@ -24,7 +23,7 @@ class ApplicationService
     private $commonGroundService;
     private $requestService;
 
-    public function __construct(ParameterBagInterface $params, CacheInterface $cache, SessionInterface $session, FlashBagInterface $flash, RequestStack $requestStack, CommonGroundService $commonGroundService, RequestService $requestService)
+    public function __construct(ParameterBagInterface $params, CacheInterface $cache, SessionInterface $session, FlashBagInterface $flash, RequestStack $requestStack, CommonGroundService $commonGroundService)
     {
         $this->params = $params;
         $this->cash = $cache;
@@ -32,7 +31,6 @@ class ApplicationService
         $this->flash = $flash;
         $this->request= $requestStack->getCurrentRequest();
         $this->commonGroundService = $commonGroundService;
-        $this->requestService= $requestService;
 
     }
 
@@ -131,11 +129,11 @@ class ApplicationService
     		/* @todo translation */
     		$this->flash->add('success', 'Verzoek voor '.$requestType['name'].' ingeladen');
     	}
-    	
+
     	if($this->session->get('request')){
     		$variables['request'] = $this->commonGroundService->getResource($this->session->get('request')['@id']);
     	}
-    	
+
     	$variables['requestType'] = $this->session->get('requestType');
 
     	return $variables;
