@@ -34,22 +34,45 @@
             		Kunnen we nu nog niet weergeven wat request op een assent is een UUD ip uri, also je hoefd niet perse in te stemmen met een veroek dus daar meoten we request subject van maken
 					{#{ assent.description #}
 					Hier moeten we ook de aanvragen, en de huide status weergeven, voorstel zou zijn om hier een kleine overzichtelijke tabel van de maken
+
+                    <h2>Gegevens van dit verzoek:</h2>
+                    <ul class="definition-list">
+                        <li class="definition-list__item definition-list__item--horizontal">
+                            <div class="definition-list__title">
+                                Status
+                            </div>
+                            <div class="definition-list__description">
+                                <p>{{ assent.status }}</p>
+                            </div>
+                        </li>
+                        <li class="definition-list__item definition-list__item--horizontal">
+                            <div class="definition-list__title">
+                                BSN Nummer
+                            </div>
+                            <div class="definition-list__description">
+                                <p>{{ assent.person }}</p>
+                            </div>
+                        </li>
                 </div><!-- /.content -->
             </div><!-- /.content-background -->
 
             <!-- Page Break -->
             <div style="height: 20px"></div>
 
-            {% if user is defined and user is not null %}
-            <div class="row">
-                <div class="col-md-6">
-                	<button class="btn btn--block">Instemmen</button>
-            	</div><!-- /.col -->
+            {% if user is defined and user is not null and assent.status == 'declined' %}
+                U kunt dit verzoek niet meer accepteren of afwijzen omdat u het verzoek reeds afgewezen hebt
+            {% elseif user is defined and user is not null %}
+                <div class="row">
+                    <form method="post" action="#">
+                        <div class="col-md-6">
+                            <button class="btn btn--block" name="status" value="granted">Instemmen</button>
+                        </div><!-- /.col -->
 
-                <div class="col-md-6">
-                	<button class="btn btn--primary btn--block">Afwijzen</button>
-            	</div><!-- /.col -->
-        	</div><!-- /.row -->
+                        <div class="col-md-6">
+                            <button class="btn btn--primary btn--block" name="status" value="declined">Afwijzen</button>
+                        </div><!-- /.col -->
+                    </form>
+                </div><!-- /.row -->
         	{% else %}
             U kunt niet instemmen of afwijzen omdat u nog niet bent ingelogd
             <div class="row">

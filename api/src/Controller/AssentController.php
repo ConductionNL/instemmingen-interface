@@ -4,6 +4,7 @@
 
 namespace App\Controller;
 
+use App\Command\PubliccodeCommand;
 use App\Service\ApplicationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -32,7 +33,7 @@ class AssentController extends AbstractController
 		$person = $variables['user']['burgerservicenummer'];
 		$defaultIrc = "https://irc.huwelijksplanner.online/assents/";
 
-		$variables['assents'] = $commonGroundService->getResourceList($defaultIrc, ['person'=>$person]);
+		$variables['assents'] = $commonGroundService->getResourceList($defaultIrc, ['person'=>$person])['hydra:member'];
 
 		return $variables;
 	}
@@ -41,18 +42,27 @@ class AssentController extends AbstractController
 	 * @Route("/{id}")
 	 * @Template
 	 */
-	public function viewAction($id, CommonGroundService $commonGroundService, ApplicationService $applicationService)
+	public function viewAction($id, CommonGroundService $commonGroundService, ApplicationService $applicationService, Request $request)
 	{
 	    $variables = $applicationService->getVariables();
 
-//	    var_dump($variables);
-//	    die;
 		// We need need to get the assssent from a differend than standard location
 
 		$defaultIrc = "https://irc.huwelijksplanner.online/assents/";
+        $variables['assent'] = $commonGroundService->getResource($defaultIrc . $id);
+        $update = false;
+        if(!key_exists('person', $variables['assent']) || $variables['assent']['person'] == null){
+            $variables['assent']['person'] = $variables['user']['burgerservicenummer'];
+            $update = true;
+        }
+        if($request->isMethod('POST') && $request->request->has('status')){
+            $variables['assent']['status'] = $request->request->get('status');
 
-		// test assent 00c38d4d-f140-489f-bf92-c7a45d826b88
-		$variables['assent'] = $commonGroundService->getResource($defaultIrc . $id);
+            $update = true;
+        }
+        if($update){
+            $variables['assent'] = $commonGroundService->updateResource($variables['assent']);
+        }
 
 		return $variables;
 	}

@@ -8,9 +8,30 @@
 
             <div class="content-background" >
             	<div class="content">
-                    {% for assent in assents %}
-                        {{ dump(assent) }}
-                    {% endfor %}
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">{{ 'name'|trans|capitalize }}</th>
+                            <th scope="col">{{ 'created'|trans|capitalize }}</th>
+                            <th scope="col">{{ 'modified'|trans|capitalize }}</th>
+                            <th scope="col">{{ 'status'|trans|capitalize }}</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for resource in assents %}
+
+                            <tr>
+                                <td>{{ resource.name }}</td>
+                                <td>{% if resource.dateCreated is defined and resource.dateCreated is not null %}{{ resource.dateCreated|date("d-m-Y H:i:s", "Europe/Paris") }}{% endif %}</td>
+                                <td>{% if resource.dateModified is defined and resource.dateModified is not null %}{{ resource.dateModified|date("d-m-Y H:i:s", "Europe/Paris") }}{% endif %}</td>
+                                <td>{{ resource.status|trans|capitalize }}</td>
+                                <td><a style="background: #cfebfd; padding: 6px; border-radius: 6px" href="{{ path('app_assent_view', {id: resource.id}) }}"><b>{{ 'view'|trans|capitalize }}</b></a></td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 </div><!-- /.content -->
             </div><!-- /.content-background -->
         </div><!-- /.col -->
