@@ -23,7 +23,7 @@
 					{{ assent.description }}
                 </div><!-- /.content -->
             </div><!-- /.content-background -->
-            
+
             <!-- Page Break -->
             <div style="height: 20px"></div>
 
@@ -34,50 +34,127 @@
             		Kunnen we nu nog niet weergeven wat request op een assent is een UUD ip uri, also je hoefd niet perse in te stemmen met een veroek dus daar meoten we request subject van maken
 					{#{ assent.description #}
 					Hier moeten we ook de aanvragen, en de huide status weergeven, voorstel zou zijn om hier een kleine overzichtelijke tabel van de maken
+
+                    <h2>Gegevens van dit verzoek:</h2>
+                    <ul class="definition-list">
+                        <li class="definition-list__item definition-list__item--horizontal">
+                            <div class="definition-list__title">
+                                Status
+                            </div>
+                            <div class="definition-list__description">
+                                <p>{{ assent.status }}</p>
+                            </div>
+                        </li>
+                        <li class="definition-list__item definition-list__item--horizontal">
+                            <div class="definition-list__title">
+                                BSN Nummer
+                            </div>
+                            <div class="definition-list__description">
+                                <p>{{ assent.person }}</p>
+                            </div>
+                        </li>
                 </div><!-- /.content -->
             </div><!-- /.content-background -->
-            
+
             <!-- Page Break -->
             <div style="height: 20px"></div>
-                
+
+            {% if user is defined and user is not null and assent.status == 'declined' %}
+                U kunt dit verzoek niet meer accepteren of afwijzen omdat u het verzoek reeds afgewezen hebt
+            {% elseif user is defined and user is not null %}
+                <div class="row">
+                    <form method="post" action="#">
+                        <div class="col-md-6">
+                            <button class="btn btn--block" name="status" value="granted">Instemmen</button>
+                        </div><!-- /.col -->
+
+                        <div class="col-md-6">
+                            <button class="btn btn--primary btn--block" name="status" value="declined">Afwijzen</button>
+                        </div><!-- /.col -->
+                    </form>
+                </div><!-- /.row -->
+        	{% else %}
+            U kunt niet instemmen of afwijzen omdat u nog niet bent ingelogd
             <div class="row">
-            
                 <div class="col-md-6">
-                	<button class="btn btn--block">Instemmen</button>
-            	</div><!-- /.col -->
-            	
-                <div class="col-md-6">
-                	<button class="btn btn--primary btn--block">Afwijzen</button>
-            	</div><!-- /.col -->
-        	</div><!-- /.row -->
-        	
+                    <button class="btn btn--block">Log in</button>
+                </div><!-- /.col -->
+            </div>
+            {% endif %}
         </div><!-- /.col -->
-            
-        <div class="col-md-4">    
-        
-            <div class="content-background ">
-                <div class="content">
-            		<h2>Uw gegevens</h2>
-                    
-                    We mogen er hiervan uitgaan dat op een instemming alstijd een "person" bekend is, je kan er immers niet bij zonder in te loggen
-                    <ul class="list list--links list--chevrons">
-                        <li>
-                            <a href="#"><b>12-3-2020 Amsterdam</b><br />De staat van de stad</a>
-                        </li>
-                        <li>
-                            <a href="#"><b>12-3-2020 Den Haag</b><br />De staat van de stad</a>
-                        </li>
-                        <li>
-                            <a href="#"><b>12-3-2020 Utrecht</b><br />De staat van de stad</a>
-                        </li>
-                    </ul>
-                </div><!-- /.content -->
-            </div><!-- /.content-background --> 
-            
+
+        <div class="col-md-4">
+
+            {% if user is not empty%}
+                <div class="content-background">
+
+                    <div class="content">
+                        <h2>Uw gegevens</h2>
+                        <ul class="definition-list">
+                            <li class="definition-list__item definition-list__item--horizontal">
+                                <div class="definition-list__title">
+                                    Voornamen
+                                </div>
+                                <div class="definition-list__description">
+                                    <p>{{ user.naam.voornamen }}</p>
+                                </div>
+                            </li>
+                            <li class="definition-list__item definition-list__item--horizontal">
+                                <div class="definition-list__title">
+                                    Achternaam
+                                </div>
+                                <div class="definition-list__description">
+                                    <p>{{ user.naam.geslachtsnaam }}</p>
+                                </div>
+                            </li>
+                            {% if user.naam.voorvoegsel is not empty%}
+                                <li class="definition-list__item definition-list__item--horizontal">
+                                    <div class="definition-list__title">
+                                        Voorvoegsel
+                                    </div>
+                                    <div class="definition-list__description">
+                                        <p>{{ user.naam.voorvoegsel }}</p>
+                                    </div>
+                                </li>
+                                <li class="definition-list__item definition-list__item--horizontal">
+                                    <div class="definition-list__title">
+                                        Leeftijd
+                                    </div>
+                                    <div class="definition-list__description">
+                                        <p>{{ user.leeftijd }}</p>
+                                    </div>
+                                </li>
+                                <li class="definition-list__item definition-list__item--horizontal">
+                                    <div class="definition-list__title">
+                                        Geslacht
+                                    </div>
+                                    <div class="definition-list__description">
+                                        <p>{{ user.geslachtsaanduiding }}</p>
+                                    </div>
+                                </li>
+                            {% endif %}
+                            <li class="definition-list__item definition-list__item--horizontal">
+                                <div class="definition-list__title">
+                                    Addres
+                                </div>
+                                <div class="definition-list__description">
+                                    <p>{{ user.verblijfplaats.straatnaam }} {{ user.verblijfplaats.huisnummer }}{{ user.verblijfplaats.huisletter }}{{ user.verblijfplaats.huisnummertoevoeging }}
+                                        <br>{{ user.verblijfplaats.postcode }} {{ user.verblijfplaats.woonplaatsnaam }}</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Page Break -->
+                <div style="height: 20px"></div>
+
+            {% endif %}
+
             <!-- Page Break -->
             <div style="height: 20px"></div>
-            
-            
+
+
         </div><!-- /.col -->
     </div><!-- /.row -->
 
