@@ -11,7 +11,7 @@
                     {% if user is defined and user is not empty %}
                     <li class="nav__item"><a class="nav__link " href="{{ path('app_assent_index') }}">Instemmingen</a></li>
                     <li class="nav__item"><a class="nav__link " href="">Verzoeken</a></li>
-                    <li class="nav__item"><a class="nav__link " href="app_logout">Uitloggen</a></li>
+                    <li class="nav__item"><a class="nav__link " href="logout">Uitloggen</a></li>
                     {% else %}
                     <li class="nav__item">
                         <a href="https://ds.huwelijksplanner.online/?responceUrl={{ absolute_url(path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) }}" title="Home" class="nav__link  ">
