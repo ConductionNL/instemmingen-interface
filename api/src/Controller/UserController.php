@@ -1,55 +1,37 @@
 <?php
 
-// src/Controller/DashboardController.php
+// src/Controller/DefaultController.php
 
 namespace App\Controller;
 
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\CommonGroundService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Session\Session;
-
-use App\Service\CommonGroundService;
 
 /**
- * Class DeveloperController
- * @package App\Controller
+ * Class UserController.
  */
 class UserController extends AbstractController
 {
-
-	/**
-	 * @Route("/login")
-	 * @Template
-	 */
-	public function loginAction()
-	{
-		return [];
-	}
-
     /**
-     * @Route("/logout")
+     * @Route("/login", methods={"GET"})
      * @Template
      */
-    public function logoutAction(Session $session)
+    public function login(Request $request, CommonGroundService $commonGroundService, ParameterBagInterface $params, EventDispatcherInterface $dispatcher)
     {
-        $session->set('requestType', false);
-        $session->set('request', false);
-        $session->set('user', false);
-        $session->set('employee', false);
-        $session->set('contact', false);
-
-        $this->addFlash('info', 'U bent uitgelogd');
-        return $this->redirect($this->generateUrl('app_default_index'));
+        return [];
     }
 
-
+    /**
+     * @Route("/logout", methods={"GET"})
+     * @Template
+     */
+    public function logout(Request $request, CommonGroundService $commonGroundService, ParameterBagInterface $params, EventDispatcherInterface $dispatcher)
+    {
+        return [];
+    }
 }
-
-
-
-
-
-

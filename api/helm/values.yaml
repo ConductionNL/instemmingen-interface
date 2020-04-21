@@ -8,21 +8,23 @@ settings:
   name: irc-ui
   title: Mijn Overheid
   version: V.0.1
+  id: 
   description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.&#039;'
-  repro: 'https://github.com/ConductionNL/irc-ui'
-  domain: 'irc-ui.zaakonline.nl'
-  domains:
-    - zaakonline.nl
-  domainsJson: ["zaakonline.nl"]
+  type: 
+  repro: https://github.com/ConductionNL/irc-ui
+  demo: irc-ui.huwelijksplanner.online
+  container: https://hub.docker.com/repository/docker/conduction/irc-ui-php
+  domain: irc-ui.zaakonline.nl
+  subdomain: irc-ui
   organisationName: Conduction
   email: info@conduction.nl
   country: Netherlands
   state: Noord-Holland
   locality: Amsterdam
-  unit: Common-Ground  
-  demo: irc-ui.huwelijksplanner.online
+  unit: Common-Ground
   env: dev
   debug: 1
+  cache: 1
   replicaCount: 1
   corsAllowOrigin: ['*']
   trustedHosts: '^(.+\.)?conduction\.nl$|^(.+\.)?huwelijksplanner\.online$|^(.+\.)?larping\.eu$|^(.+\.)?common-ground\.dev$|^(.+\.)?trouwplanner\.online$|^(.+\.)?zaakonline\.nl$|localhost'
@@ -39,14 +41,15 @@ settings:
   # If you are runnig a single component on a kubernetes cluster you can just easaliy enable the load balancer, if not you need to set up a multi component load balancer
   notificationEnabled: false
   audittrailEnabled: false
+  authorisationEnabled: false
   healthEnabled: false
   archiveEnabled: false
 
 security:
-  commongroundId: 45c1a4b6-59d3-4a6e-86bf-88a872f35845
-  commongroundKey: 45c1a4b6-59d3-4a6e-86bf-88a872f35845
-  applicationKey: 45c1a4b6-59d3-4a6e-86bf-88a872f35845
-  userKey: 45c1a4b6-59d3-4a6e-86bf-88a872f35845
+  commongroundId: "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
+  commongroundKey: "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
+  applicationKey: "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
+  userKey: "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
   authorisationProviderUser: https://uc.conduction.nl
   authorisationProviderApplication: https://uc.conduction.nl
 
