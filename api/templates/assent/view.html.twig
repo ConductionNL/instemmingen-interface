@@ -77,7 +77,7 @@
             U kunt niet instemmen of afwijzen omdat u nog niet bent ingelogd
             <div class="row">
                 <div class="col-md-6">
-                    <button class="btn btn--block">Log in</button>
+                    <a href="https://ds.huwelijksplanner.online/?responceUrl={{ absolute_url(path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) }}" class="btn btn--block">Log in</a>
                 </div><!-- /.col -->
             </div>
             {% endif %}
