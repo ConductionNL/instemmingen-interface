@@ -53,15 +53,19 @@ class AssentController extends AbstractController
         $update = false;
         if(!key_exists('person', $variables['assent']) || $variables['assent']['person'] == null){
             $variables['assent']['person'] = $variables['user']['burgerservicenummer'];
+
             $update = true;
         }
         if($request->isMethod('POST') && $request->request->has('status')){
             $variables['assent']['status'] = $request->request->get('status');
 
             $update = true;
+//            $this->addFlash('success', "assent has been updated with status {$variables["assent"]["status"]}");
         }
         if($update){
-            $variables['assent'] = $commonGroundService->updateResource($variables['assent']);
+            $variables['assent'] = $commonGroundService->saveResource($variables['assent']);
+
+
         }
 
 		return $variables;
