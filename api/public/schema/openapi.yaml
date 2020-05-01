@@ -3125,12 +3125,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-28 09:34:38'
+        example: '2020-05-01 08:05:46'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-28 09:34:38'
+        example: '2020-05-01 08:05:46'
     required: []
   AuditTrail-write:
     properties:
@@ -3178,12 +3178,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-28 09:34:38'
+        example: '2020-05-01 08:05:46'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-28 09:34:38'
+        example: '2020-05-01 08:05:46'
     required: []
   ChangeLog-write:
     properties:
@@ -3273,8 +3273,8 @@ securityDefinitions:
 host: irc.zaakonline.nl
 servers:
   -
-    name: irc-ui.zaakonline.nl
-    url: irc-ui.dev.irc-ui.zaakonline.nl
+    name: huwelijksplanner.online
+    url: irc-ui.dev.huwelijksplanner.online
 externalDocs:
   -
     description: 'OAS Documentatie'
