@@ -18,6 +18,7 @@
     <div class="row">
         <div class="col-md-8">
 
+            {% if user is defined and user is not null %}
             <div class="content-background">
             	<div class="content">
 					{{ assent.description }}
@@ -28,6 +29,7 @@
                     </p>
                 </div><!-- /.content -->
             </div><!-- /.content-background -->
+
 
             <!-- Page Break -->
             <div style="height: 20px"></div>
