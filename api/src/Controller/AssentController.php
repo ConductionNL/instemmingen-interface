@@ -50,10 +50,10 @@ class AssentController extends AbstractController
 
 		$defaultIrc = "https://irc.huwelijksplanner.online/assents/";
         $variables['assent'] = $commonGroundService->getResource($defaultIrc . $id);
+        $variables['requester'] = $commonGroundService->getResource(['component'=>'vrc', 'type'=>'requests','id'=>$variables['assent']['request']])['submitters'][0]['person'];
         $update = false;
         if(!key_exists('person', $variables['assent']) || $variables['assent']['person'] == null){
             $variables['assent']['person'] = $variables['user']['burgerservicenummer'];
-
             $update = true;
         }
         if($request->isMethod('POST') && $request->request->has('status')){

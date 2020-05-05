@@ -18,31 +18,35 @@
     <div class="row">
         <div class="col-md-8">
 
+            {% if user is defined and user is not null %}
             <div class="content-background">
             	<div class="content">
 					{{ assent.description }}
+                    <p>
+                    Als u dit verzoek wilt accepteren, klik dan op de groene knop 'Instemmen' onderaan dit formulier. Als u het om wat voor reden dan ook dit verzoek niet wilt accepteren, klik dan op 'Afwijzen'.
+                    </p><p>
+                    Nadat u uw keuze heeft gemaakt kunt u dit venster sluiten.
+                    </p>
                 </div><!-- /.content -->
             </div><!-- /.content-background -->
 
+
             <!-- Page Break -->
             <div style="height: 20px"></div>
-
-            <h2>Uw instemming</h2>
-
+            {% set requester = commonground_resource(requester) %}
+            <h2>Gegevens van dit verzoek:</h2>
             <div class="content-background">
             	<div class="content">
-            		Kunnen we nu nog niet weergeven wat request op een assent is een UUD ip uri, also je hoefd niet perse in te stemmen met een veroek dus daar meoten we request subject van maken
-					{#{ assent.description #}
-					Hier moeten we ook de aanvragen, en de huide status weergeven, voorstel zou zijn om hier een kleine overzichtelijke tabel van de maken
 
-                    <h2>Gegevens van dit verzoek:</h2>
+
+
                     <ul class="definition-list">
                         <li class="definition-list__item definition-list__item--horizontal">
                             <div class="definition-list__title">
                                 Status
                             </div>
                             <div class="definition-list__description">
-                                <p>{{ assent.status }}</p>
+                                <p>{{ assent.status|trans|capitalize }}</p>
                             </div>
                         </li>
                         <li class="definition-list__item definition-list__item--horizontal">
@@ -53,26 +57,44 @@
                                 <p>{{ assent.person }}</p>
                             </div>
                         </li>
+                        <li class="definition-list__item definition-list__item--horizontal">
+                            <div class="definition-list__title">
+                                Naam aanvrager
+                            </div>
+                            <div class="definition-list__description">
+                                <p>{{ requester.name }}</p>
+                            </div>
+                        </li>
                 </div><!-- /.content -->
             </div><!-- /.content-background -->
 
             <!-- Page Break -->
             <div style="height: 20px"></div>
 
-            {% if user is defined and user is not null and assent.status == 'declined' %}
-                U kunt dit verzoek niet meer accepteren of afwijzen omdat u het verzoek reeds afgewezen hebt
-            {% elseif user is defined and user is not null %}
-                <div class="row">
-                    <form method="post" action="#">
-                        <div class="col-md-6">
-                            <button class="btn btn--block" name="status" value="granted">Instemmen</button>
-                        </div><!-- /.col -->
+            {% if user is defined and user is not null %}
+                {% if assent.status == 'declined' %}
+                    U kunt dit verzoek niet meer accepteren of afwijzen omdat u het verzoek reeds afgewezen hebt
+                {% elseif assent.status == 'granted' %}
+                    <div class="row">
+                        <form method="post" action="#">
+                            <div class="col-md-6">
+                                <button class="btn btn--primary btn--block" name="status" value="declined">Instemming intrekken</button>
+                            </div><!-- /.col -->
+                        </form>
+                    </div><!-- /.row -->
+                {% else %}
+                    <div class="row">
+                        <form method="post" action="#">
+                            <div class="col-md-6">
+                                <button class="btn btn--block" name="status" value="granted">Instemmen</button>
+                            </div><!-- /.col -->
 
-                        <div class="col-md-6">
-                            <button class="btn btn--primary btn--block" name="status" value="declined">Afwijzen</button>
-                        </div><!-- /.col -->
-                    </form>
-                </div><!-- /.row -->
+                            <div class="col-md-6">
+                                <button class="btn btn--primary btn--block" name="status" value="declined">Afwijzen</button>
+                            </div><!-- /.col -->
+                        </form>
+                    </div><!-- /.row -->
+                    {% endif %}
         	{% else %}
             U kunt niet instemmen of afwijzen omdat u nog niet bent ingelogd
             <div class="row">
@@ -135,7 +157,7 @@
                             {% endif %}
                             <li class="definition-list__item definition-list__item--horizontal">
                                 <div class="definition-list__title">
-                                    Addres
+                                    Adres
                                 </div>
                                 <div class="definition-list__description">
                                     <p>{{ user.verblijfplaats.straatnaam }} {{ user.verblijfplaats.huisnummer }}{{ user.verblijfplaats.huisletter }}{{ user.verblijfplaats.huisnummertoevoeging }}
