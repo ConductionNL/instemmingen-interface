@@ -74,6 +74,9 @@
             {% if user is defined and user is not null %}
                 {% if assent.status == 'declined' %}
                     U kunt dit verzoek niet meer accepteren of afwijzen omdat u het verzoek reeds afgewezen hebt
+
+                {% elseif assent.status == 'cancelled' %}
+                    U kunt dit verzoek niet meer accepteren of wijzigen omdat de aanvrager het verzoek heeft geannuleerd.
                 {% elseif assent.status == 'granted' %}
                     <div class="row">
                         <form method="post" action="#">
