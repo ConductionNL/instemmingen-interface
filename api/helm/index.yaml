@@ -3,14 +3,14 @@ entries:
   irc-ui:
   - apiVersion: v1
     appVersion: V.0.1
-    created: "2021-02-18T00:13:21.8146873Z"
+    created: "2021-02-18T01:00:39.6656876Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: bcc35d714e958c1c5d3f0c1c16922ee05a5838573aadac8eb54625ac983c7cec
+    digest: fe0e919022ee7378ffc3dc2b80ac8f11ae42079ea0e41ba4763d4673f55dd218
     home: instemmingen.conduction.nl
     icon: instemmingen.conduction.nl
     name: irc-ui
     urls:
     - irc-ui-0.1.0.tgz
     version: 0.1.0
-generated: "2021-02-18T00:13:21.8099167Z"
+generated: "2021-02-18T01:00:39.6389215Z"
