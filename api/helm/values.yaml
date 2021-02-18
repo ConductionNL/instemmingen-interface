@@ -7,15 +7,18 @@ settings:
   projectName: irc-ui
   name: irc-ui
   title: Mijn Overheid
-  version: V.0.1
+  version: V1.0
+  majorVersion: v1
   id: 
   description: 'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'
   type: application
-  repro: https://github.com/ConductionNL/irc-ui
+  repro: https://github.com/ConductionNL/Proto-component-commonground
   demo: irc-ui.huwelijksplanner.online
-  container: https://hub.docker.com/repository/docker/conduction/irc-ui-php
+  container: https://hub.docker.com/repository/docker/conduction/pc-php
   domain: huwelijksplanner.online
   subdomain: irc-ui
+  subpath: pc
+  subpathRouting: true
   organisationName: Conduction
   email: info@conduction.nl
   country: Netherlands
