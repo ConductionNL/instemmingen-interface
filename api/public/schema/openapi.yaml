@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/irc-ui-php) 
     - Datamodel: [postman](/schema/irc-ui.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
 paths:
   /audit_trails:
@@ -2361,12 +2361,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-10 14:21:27'
+        example: '2021-02-18 00:05:16'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-10 14:21:27'
+        example: '2021-02-18 00:05:16'
     required: []
   AuditTrail-write:
     properties:
@@ -2414,12 +2414,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-10 14:21:27'
+        example: '2021-02-18 00:05:16'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-10 14:21:27'
+        example: '2021-02-18 00:05:16'
     required: []
   ChangeLog-write:
     properties:
